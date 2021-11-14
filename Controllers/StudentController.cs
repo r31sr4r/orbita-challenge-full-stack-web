@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityFrameworkPaginateCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace orbita_challenge_full_stack_web.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
+        private const int PAGE_SIZE = 3;
         private readonly DB_Context _context;
 
         public StudentController(DB_Context context)
@@ -23,9 +25,11 @@ namespace orbita_challenge_full_stack_web.Controllers
         // GET: student
         [HttpGet]
         [Route("/Student")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return StatusCode(200, await _context.Students.ToListAsync());
+            return StatusCode(200, await _context.Students
+                .OrderBy(a => a.Id)
+                .PaginateAsync(page, PAGE_SIZE));
             //return View(await _context.Students.ToListAsync());
         }
 

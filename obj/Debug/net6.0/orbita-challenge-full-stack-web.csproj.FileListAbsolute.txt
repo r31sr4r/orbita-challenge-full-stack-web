@@ -1,10 +1,12 @@
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/appsettings.json
+/home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/appsettings.Sample.json
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/orbita-challenge-full-stack-web
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/orbita-challenge-full-stack-web.deps.json
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/orbita-challenge-full-stack-web.runtimeconfig.json
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/orbita-challenge-full-stack-web.dll
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/ref/orbita-challenge-full-stack-web.dll
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/orbita-challenge-full-stack-web.pdb
+/home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/EntityFrameworkPaginateCore.dll
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/Humanizer.dll
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -31,4 +33,3 @@
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/obj/Debug/net6.0/ref/orbita-challenge-full-stack-web.dll
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/obj/Debug/net6.0/orbita-challenge-full-stack-web.pdb
 /home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/obj/Debug/net6.0/orbita-challenge-full-stack-web.genruntimeconfig.cache
-/home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/bin/Debug/net6.0/appsettings.Sample.json
