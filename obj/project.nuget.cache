@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "n7BI7ok+1nX+rG4JORoxM6THOpYfZ+rYKzbW6xBgBtD4kYIzxc1cvMP6kYMXsso+3dYz+xja6b5Tl3hK3y+nTQ==",
+  "success": true,
+  "projectFilePath": "/home/r31sr4r/Projects/dotnet_core/orbita-challenge/orbita-challenge-full-stack-web/orbita-challenge-full-stack-web.csproj",
+  "expectedPackageFiles": [
+    "/home/r31sr4r/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/r31sr4r/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/r31sr4r/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/home/r31sr4r/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/home/r31sr4r/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/home/r31sr4r/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
