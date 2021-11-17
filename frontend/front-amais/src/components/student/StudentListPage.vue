@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="studentList"
-    sort-by="calories"
+    sort-by="name"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -40,53 +40,39 @@
               <v-container>
                 <v-row>
                   <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
+                    cols="12"                    
+                    md="8"
                   >
                     <v-text-field
                       v-model="editedItem.name"
-                      label="Dessert name"
+                      label="Nome"
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
-                    sm="6"
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
+                      v-model="editedItem.cpf"
+                      label="CPF"
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
-                    sm="6"
-                    md="4"
+                    md="8"
                   >
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.email"
+                      label="Email"
                     ></v-text-field>
                   </v-col>
                   <v-col
                     cols="12"
-                    sm="6"
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                      v-model="editedItem.id"
+                      label="RA"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -114,7 +100,7 @@
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+            <v-card-title class="text-h5">Tem certeza que deseja excluir este aluno?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
@@ -141,58 +127,60 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
+        <p>Não existem alunos cadastrados</p>
+        <!--
       <v-btn
         color="primary"
         @click="initialize"
       >
         Reset
       </v-btn>
+      -->
     </template>
   </v-data-table>
 </template>
 
 <script>
-    const axios =  require('axios');
+    import api from '../api/api';
+    
     export default {
-        name: 'StudentListPage',        
+        name: 'StudentListPage',  
+        mixins: [api],
             data: () => ({
         dialog: false,
         dialogDelete: false,
         headers: [
             {
-            text: 'Dessert (100g serving)',
+            text: 'Nome',
             align: 'start',
             sortable: false,
             value: 'name',
             },
-            { text: 'Calories', value: 'calories' },
-            { text: 'Fat (g)', value: 'fat' },
-            { text: 'Carbs (g)', value: 'carbs' },
-            { text: 'Protein (g)', value: 'protein' },
-            { text: 'Actions', value: 'actions', sortable: false },
+            { text: 'CPF', value: 'cpf' },
+            { text: 'Email', value: 'email' },
+            { text: 'RA', value: 'id' },
+            { text: 'Ações', value: 'actions', sortable: false },
         ],
         desserts: [],
         editedIndex: -1,
         editedItem: {
             name: '',
-            calories: 0,
-            fat: 0,
-            carbs: 0,
-            protein: 0,
+            id: 0,
+            cpf: '',
+            email: '',
         },
         defaultItem: {
             name: '',
-            calories: 0,
-            fat: 0,
-            carbs: 0,
-            protein: 0,
+            id: 0,
+            cpf: '',
+            email: '',
         },
         studentList: [],
         }),
 
         computed: {
         formTitle () {
-            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+            return this.editedIndex === -1 ? 'Novo Aluno' : 'Edição de Aluno'
         },
         },
 
@@ -206,13 +194,14 @@
         },
 
         created () {
-            this.initialize();
-            axios.get('http://localhost:5285/student').then((response) => {
+            //this.initialize();
+            this.get('/student').then((response) => {
                 this.studentList = response.data.results;                
             });
         },
 
         methods: {
+            /*
         initialize () {
             this.desserts = [
             {
@@ -287,21 +276,21 @@
             },
             ]
         },
-
+*/
         editItem (item) {
-            this.editedIndex = this.desserts.indexOf(item)
+            this.editedIndex = this.studentList.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
 
         deleteItem (item) {
-            this.editedIndex = this.desserts.indexOf(item)
+            this.editedIndex = this.studentList.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialogDelete = true
         },
 
         deleteItemConfirm () {
-            this.desserts.splice(this.editedIndex, 1)
+            this.studentList.splice(this.editedIndex, 1)
             this.closeDelete()
         },
 
@@ -323,9 +312,9 @@
 
         save () {
             if (this.editedIndex > -1) {
-            Object.assign(this.desserts[this.editedIndex], this.editedItem)
+                Object.assign(this.studentList[this.editedIndex], this.editedItem)
             } else {
-            this.desserts.push(this.editedItem)
+                this.studentList.push(this.editedItem)
             }
             this.close()
         },
