@@ -46,7 +46,6 @@
             Login() {
                 if (this.token) {
                     this.$store.commit('setAuthToken', this.token); 
-                    this.$store.commit('setLogged', true);    
                     this.$router.push('/student');
 
                 } else {

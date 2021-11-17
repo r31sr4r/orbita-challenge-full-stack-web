@@ -44,10 +44,10 @@
           <v-list-item>
             <v-list-item-title @click="goToStudentList">Alunos</v-list-item-title>
           </v-list-item>
-
+<!-- 
           <v-list-item>
             <v-list-item-title @click="logout">Sair</v-list-item-title>
-          </v-list-item>
+          </v-list-item> -->
 
         </v-list-item-group>
       </v-list>
@@ -59,6 +59,7 @@
 
 <script>
     export default {
+
         data: () => ({
             drawer: false,
             group: null,
@@ -69,17 +70,7 @@
                 this.drawer = false
             },
         },
-        name: 'AppHeader',
-        methods: {
-            goToStudentList() {
-                this.$router.push('/student');
-            },          
-            logout() {
-                this.$store.commit('setAuthToken', '');
-                this.$store.commit('setLogged', false);
-                this.$router.push('/');
-            },                     
-        },
+
     };
 </script>
 
