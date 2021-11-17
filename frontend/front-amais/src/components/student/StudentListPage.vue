@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="studentList"
     sort-by="calories"
     class="elevation-1"
   >
@@ -28,7 +28,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Item
+              Novo Aluno
             </v-btn>
           </template>
           <v-card>
@@ -152,7 +152,7 @@
 </template>
 
 <script>
-
+    const axios =  require('axios');
     export default {
         name: 'StudentListPage',        
             data: () => ({
@@ -187,6 +187,7 @@
             carbs: 0,
             protein: 0,
         },
+        studentList: [],
         }),
 
         computed: {
@@ -205,7 +206,10 @@
         },
 
         created () {
-        this.initialize()
+            this.initialize();
+            axios.get('http://localhost:5285/student').then((response) => {
+                this.studentList = response.data.results;                
+            });
         },
 
         methods: {

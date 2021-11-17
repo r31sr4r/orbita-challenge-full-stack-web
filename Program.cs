@@ -21,7 +21,20 @@ var serverVersion = new MariaDbServerVersion(new Version(10, 5, 12));
 builder.Services.AddDbContext<DB_Context>(options =>
     options.UseMySql(connection, serverVersion));
 
+builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyHeader());
+        });
+
+
 var app = builder.Build();
+
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -37,3 +50,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
