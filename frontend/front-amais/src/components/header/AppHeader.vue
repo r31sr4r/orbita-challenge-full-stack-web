@@ -59,7 +59,6 @@
 
 <script>
     export default {
-      
         data: () => ({
             drawer: false,
             group: null,
@@ -70,7 +69,17 @@
                 this.drawer = false
             },
         },
-
+        name: 'AppHeader',
+        methods: {
+            goToStudentList() {
+                this.$router.push('/student');
+            },          
+            logout() {
+                this.$store.commit('setAuthToken', '');
+                this.$store.commit('setLogged', false);
+                this.$router.push('/');
+            },                     
+        },
     };
 </script>
 
