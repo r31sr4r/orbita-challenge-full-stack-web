@@ -14,7 +14,7 @@ namespace orbita_challenge_full_stack_web.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private const int PAGE_SIZE = 3;
+        private const int PAGE_SIZE = 2555;
         private readonly DB_Context _context;
 
         public StudentController(DB_Context context)
