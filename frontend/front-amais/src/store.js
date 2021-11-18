@@ -14,7 +14,9 @@ export default new Vuex.Store({
     },
     mutations: {
         setAuthToken(state, payload ) {
+            window.localStorage.authToken = payload;
             state.authToken = payload;
+            state.logged = Boolean(state.authToken);
         },
         setLogged(state, payload ) {
             state.logged = payload;
@@ -30,7 +32,7 @@ export default new Vuex.Store({
                 text: payload,
                 type: 'SUCCESS',
             };
-        },   
+        },    
     },
 
 });

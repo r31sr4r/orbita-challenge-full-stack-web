@@ -76,7 +76,6 @@
             },          
             logout() {
                 this.$store.commit('setAuthToken', '');
-                this.$store.commit('setLogged', false);
                 this.$router.push('/');
             },                     
         },

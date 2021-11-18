@@ -13,7 +13,7 @@ export default {
 
                 // newConfig.url += `key=${this.$store.state.authToken}`;
 
-                // return newConfig;
+                return newConfig;
             }, () => {
                 this.$store.commit('showErrorMessage', 'Ops! Houve um problema ao enviar a requisição');
             });
