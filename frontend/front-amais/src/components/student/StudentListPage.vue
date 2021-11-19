@@ -36,46 +36,57 @@
               <span class="text-h5">{{ formTitle }}</span>
             </v-card-title>
 
-            <v-card-text>
+            <v-card-text>              
               <v-container>
-                <v-row>
-                  <v-col
-                    cols="12"                    
-                    md="8"
-                  >
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Nome"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.cpf"
-                      label="CPF"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    md="8"
-                  >
-                    <v-text-field
-                      v-model="editedItem.email"
-                      label="Email"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.id"
-                      label="RA"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
+                <v-form ref="form" lazy-validation>
+                  <v-row>
+                    <v-col
+                      cols="12"                    
+                      md="8"
+                    >
+                      <v-text-field
+                        v-model="editedItem.name"
+                        label="Nome"
+                        :rules="nameRules"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.cpf"
+                        label="CPF"
+                        :rules="cpfRules"
+                        required
+                        v-mask="'###.###.###-##'"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      md="8"
+                    >
+                      <v-text-field
+                        v-model="editedItem.email"
+                        label="Email"
+                        :rules="emailRules"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="editedItem.id"
+                        label="RA"
+                        
+                        disabled
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
               </v-container>
             </v-card-text>
 
@@ -86,21 +97,21 @@
                 text
                 @click="close"
               >
-                Cancel
+                Cancelar
               </v-btn>
               <v-btn
                 color="blue darken-1"
                 text
                 @click="save"
               >
-                Save
+                Salvar
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">Tem certeza que deseja excluir este aluno?</v-card-title>
+            <v-card-title class="text-h6">Tem certeza que deseja excluir este aluno?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
@@ -146,36 +157,47 @@
     export default {
         name: 'StudentListPage',  
         mixins: [api],
-            data: () => ({
-        dialog: false,
-        dialogDelete: false,
-        headers: [
-            {
-            text: 'Nome',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-            },
-            { text: 'CPF', value: 'cpf' },
-            { text: 'Email', value: 'email' },
-            { text: 'RA', value: 'id' },
-            { text: 'Ações', value: 'actions', sortable: false },
-        ],
-        desserts: [],
-        editedIndex: -1,
-        editedItem: {
-            name: '',
-            id: 0,
-            cpf: '',
-            email: '',
-        },
-        defaultItem: {
-            name: '',
-            id: 0,
-            cpf: '',
-            email: '',
-        },
-        studentList: [],
+        data: () => ({    
+          dialog: false,
+          dialogDelete: false,
+          headers: [
+              {
+              text: 'Nome',
+              align: 'start',
+              sortable: false,
+              value: 'name',
+              },
+              { text: 'CPF', value: 'cpf' },
+              { text: 'Email', value: 'email' },
+              { text: 'RA', value: 'id' },
+              { text: 'Ações', value: 'actions', sortable: false },
+          ],
+          desserts: [],
+          editedIndex: -1,
+          editedItem: {
+              name: '',
+              id: '00000',
+              cpf: '',
+              email: '',
+          },
+          defaultItem: {
+              name: '',
+              id: '00000',
+              cpf: '',
+              email: '',
+          },
+          nameRules: [
+            v => !!v || 'Nome é obrigatório',
+          ],
+          emailRules: [
+              v => !!v || 'Email é obrigatório',
+              v => /.+@.+/.test(v) || 'Digite um e-mail válido.',
+              
+          ],        
+          cpfRules: [
+              v => !!v || 'CPF é obrigatório',
+          ],          
+          studentList: [],
         }),
 
         computed: {
@@ -216,10 +238,13 @@
 
         deleteItemConfirm () {
             this.delete('/student/' + this.editedItem.id).then((response) => {
-            console.log(response.data.id);
+              console.log(response.data.id);
+              this.$store.commit('showSuccessMessage', `Aluno ${this.editedItem.name} excluído com sucesso!`);
+
             });
             this.studentList.splice(this.editedIndex, 1)
             this.closeDelete()
+
         },
 
         close () {
@@ -239,22 +264,28 @@
         },
 
         save () {
-            if (this.editedIndex > -1) {
-                Object.assign(this.studentList[this.editedIndex], this.editedItem)
-                  this.put('/student/' + this.editedItem.id, this.editedItem).then((response) => {
-                  console.log(response.data.id);
-                });      
-            } else {
-                // console.log(this.editedItem)
-                  this.post('/student', this.editedItem).then((response) => {
-                  this.editedItem.id = response.data.id;
-                });     
-                  this.studentList.push(this.editedItem)
-                  this.get('/student').then((response) => {
-                    this.studentList = response.data.results;   
-                  });
+            this.$refs.form.validate();
+            //Se o aluno está sendo editado, então o sistema faz a chamada do método PUT para atualizar
+            if (this.editedItem.name && this.editedItem.email && this.editedItem.email) {
+              if (this.editedIndex > -1) {                
+                  Object.assign(this.studentList[this.editedIndex], this.editedItem)
+                    this.put('/student/' + this.editedItem.id, this.editedItem).then((response) => {
+                    console.log(response.data.id);
+                    this.$store.commit('showSuccessMessage', `Aluno ${response.data.name} atualizado com sucesso!`);
+                  });      
+              } else {
+                  //Se o aluno é novo, então o sistema faz a chamada do método POST para Cadastrar
+                    this.post('/student', this.editedItem).then((response) => {
+                    this.editedItem.id = response.data.id;
+                    this.$store.commit('showSuccessMessage', `Aluno cadastrado com sucesso!`);
+                  });     
+                    this.studentList.push(this.editedItem)
+                    this.get('/student').then((response) => {
+                      this.studentList = response.data.results;   
+                    });
+              }
+              this.close()
             }
-            this.close()
         },
         },
     };
