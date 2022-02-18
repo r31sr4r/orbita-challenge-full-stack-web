@@ -1,16 +1,12 @@
-GrupoA Educação - Full Stack Web Developer
+Aplicação que realiza a Matrícula do Aluno na Turma de Programação
 ===================
 
-[![N|Solid](https://www.grupoa.com.br/hs-fs/hubfs/logo-grupoa.png?width=300&name=logo-grupoa.png)](https://www.grupoa.com.br) 
-
-O objetivo deste desafio é avaliar as competências técnicas dos candidatos a desenvolvedor Full Stack Web na Maior Plataforma de Educação do Brasil, **Grupo A Educação**. 
-
-Será solicitado o desenvolvimento de uma Aplicação que realize a Matrícula do Aluno na Turma de Programação Web da instituição EdTech. Regras e requisitos técnicos estão detalhadas neste documento.
+Regras e requisitos técnicos estão detalhadas neste documento.
 
 # Especificações Técnicas
 - **Front End:** [Vuetifyjs](https://vuetifyjs.com/en/)  como framework de UI
 - **API:** .netCore, C# e Entity framework
-- **Banco de Dados:** Postgress ou MySQL
+- **Banco de Dados:** MySQL
 - **Idioma de escrita do código:** Inglês
 
 
@@ -96,25 +92,3 @@ Abaixo alguns mockoups de interface como um guia para a criação do front-end. 
 - **RA** (não editável) (chave única)
 - **CPF** (não editável)
 
-# Desejável
-- Testes unitários
-- Documentação da arquitetura de solução
-
-# Critérios de avaliação
-- Qualidade de escrita do código
-- Organização do projeto
-- Qualidade da API
-- Lógica da solução implementada
-- Qualidade da camada de persistência
-- Utilização do Git (quantidade e descrição dos commits, Git Flow, ...)
-
-# Instruções de entrega
-1. Crie um fork do repositório no seu GitHub
-2. Faça o push do código desenvolvido no seu Github
-3. Inclua um arquivo chamado COMMENTS.md explicando
-- Decisão da arquitetura utilizada
-- Lista de bibliotecas de terceiros utilizadas
-- O que você melhoraria se tivesse mais tempo
-- Quais requisitos obrigatórios que não foram entregues
-4. Informe ao recrutador quando concluir o desafio junto com o link do repositório
-5. Após revisão do projeto junto com a equipe de desevolvimento deixe seu repositório privado
